@@ -26,16 +26,16 @@ export default {
     },
     handleDone(id) {
       if (id) {
-        let todoItem = this.todos.find(id);
-        todoItem.done = true;
-
-        this.todos = this.todos.map((item) => {
-          if (item.done === true) {
+        this.todos = this.todos.map((todo) => {
+          if (todo.id === id) {
+            todo.done = !todo.done;
           }
+          return todo;
         });
-      } else {
-        this.done = false;
       }
+    },
+    removeDoneHandler() {
+      this.todos = this.todos.filter((todo) => !todo.done);
     },
   },
 };
@@ -45,10 +45,15 @@ export default {
   <section class="form-container">
     <input type="text" v-model="inputValue" />
     <button @click="submitHandler" class="sumbit-btn">Submit</button>
+    <button @click="removeDoneHandler" class="sumbit-btn">Remove All Done</button>
   </section>
   <section>
     <ul v-for="todo in todos" key="todo.id" class="list-item">
-      <li @click="handleDone(todo.id)" id="todoItem">
+      <li
+        @click="handleDone(todo.id)"
+        id="todoItem"
+        v-bind:class="{ 'done-item': todo.done }"
+      >
         {{ todo.todo }}
       </li>
       <button @click="removeHandler(todo.id)" class="remove-btn">Remove</button>
@@ -75,6 +80,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 10%;
+  cursor: pointer;
 }
 
 .list-item li {
@@ -87,5 +93,9 @@ export default {
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 0.3rem;
+}
+
+.done-item {
+  text-decoration: line-through;
 }
 </style>
