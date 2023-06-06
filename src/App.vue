@@ -4,6 +4,7 @@ export default {
     return {
       todos: [],
       inputValue: "",
+      done: false,
     };
   },
   methods: {
@@ -12,6 +13,7 @@ export default {
         let todoObj = {
           id: new Date().valueOf(),
           todo: this.inputValue,
+          done: this.done,
         };
         this.todos.push(todoObj);
         this.inputValue = "";
@@ -20,6 +22,19 @@ export default {
     removeHandler(id) {
       if (id) {
         this.todos = this.todos.filter((item) => item.id !== id);
+      }
+    },
+    handleDone(id) {
+      if (id) {
+        let todoItem = this.todos.find(id);
+        todoItem.done = true;
+
+        this.todos = this.todos.map((item) => {
+          if (item.done === true) {
+          }
+        });
+      } else {
+        this.done = false;
       }
     },
   },
@@ -33,7 +48,7 @@ export default {
   </section>
   <section>
     <ul v-for="todo in todos" key="todo.id" class="list-item">
-      <li>
+      <li @click="handleDone(todo.id)" id="todoItem">
         {{ todo.todo }}
       </li>
       <button @click="removeHandler(todo.id)" class="remove-btn">Remove</button>
