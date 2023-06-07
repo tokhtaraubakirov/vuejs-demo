@@ -2,7 +2,7 @@
   <section class="form-container">
     <input type="text" v-model="inputValue" />
     <button @click="submitHandler" class="sumbit-btn">Submit</button>
-    <button @click="removeDoneHandler" class="sumbit-btn">
+    <button @click="removeDoneHandler" class="delete-all-btn">
       Remove All Done
     </button>
   </section>
@@ -47,6 +47,13 @@ export default {
 .sumbit-btn {
   background-color: green;
   color: black;
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 0.3rem;
+}
+.delete-all-btn {
+  background-color: plum;
+  color: white;
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 0.3rem;

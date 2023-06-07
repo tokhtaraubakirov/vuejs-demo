@@ -1,17 +1,6 @@
-<template>
-  <ul v-for="todo in todos" :key="todo.id" class="list-item">
-    <li
-      @click="handleDone(todo.id)"
-      id="todoItem"
-      v-bind:class="{ 'done-item': todo.done }"
-    >
-      {{ todo.todo }}
-    </li>
-    <button @click="removeHandler(todo.id)" class="remove-btn">Remove</button>
-  </ul>
-</template>
-
 <script>
+import TodoItem from "./TodoItem.vue";
+
 export default {
   props: {
     todos: {
@@ -27,8 +16,18 @@ export default {
       required: true,
     },
   },
+  components: {
+    TodoItem,
+  },
 };
 </script>
+
+<template>
+  <ul v-for="todo in todos" :key="todo.id" class="list-item">
+    <TodoItem :todo="todo" :handleDone="handleDone" />
+    <button @click="removeHandler(todo.id)" class="remove-btn">Remove</button>
+  </ul>
+</template>
 
 <style scoped>
 .list-item {
@@ -49,9 +48,5 @@ export default {
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 0.3rem;
-}
-
-.done-item {
-  text-decoration: line-through;
 }
 </style>
