@@ -1,28 +1,20 @@
 <script>
 import TodoList from "./components/TodoList.vue";
+import TodoForm from "./components/TodoForm.vue";
 
 export default {
   components: {
-    TodoList
+    TodoList,
+    TodoForm
   },
   data() {
     return {
       todos: [],
-      inputValue: "",
-      done: false,
     };
   },
   methods: {
-    submitHandler() {
-      if (this.inputValue) {
-        let todoObj = {
-          id: new Date().valueOf(),
-          todo: this.inputValue,
-          done: this.done,
-        };
-        this.todos.push(todoObj);
-        this.inputValue = "";
-      }
+    submitHandler(todoObj) {
+      this.todos = [...this.todos, todoObj];
     },
     removeHandler(id) {
       if (id) {
@@ -47,27 +39,12 @@ export default {
 </script>
 
 <template>
-  <section class="form-container">
-    <input type="text" v-model="inputValue" />
-    <button @click="submitHandler" class="sumbit-btn">Submit</button>
-    <button @click="removeDoneHandler" class="sumbit-btn">Remove All Done</button>
-  </section>
+  <TodoForm @create="submitHandler" :removeDoneHandler="removeDoneHandler"/>
   <section>
     <TodoList :todos="todos" :handleDone="handleDone" :removeHandler="removeHandler"/>
   </section>
 </template>
 
 <style scoped>
-.form-container {
-  display: flex;
-  justify-content: space-between;
-  width: 10%;
-}
-.sumbit-btn {
-  background-color: green;
-  color: black;
-  padding: 0.5rem 1rem;
-  border: 0;
-  border-radius: 0.3rem;
-}
+
 </style>
