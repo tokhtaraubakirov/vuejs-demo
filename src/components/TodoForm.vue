@@ -1,7 +1,7 @@
 <template>
   <section class="form-container">
-    <input type="text" v-model="inputValue" />
-    <button @click="submitHandler" class="sumbit-btn">Submit</button>
+    <input type="text" v-model.trim="inputValue" class="input" />
+    <button @click="submitHandler" class="submit-btn">Submit</button>
     <button @click="removeDoneHandler" class="delete-all-btn">
       Remove All Done
     </button>
@@ -42,20 +42,29 @@ export default {
 .form-container {
   display: flex;
   justify-content: space-between;
-  width: 10%;
+  width: 19.85%;
 }
-.sumbit-btn {
-  background-color: green;
-  color: black;
-  padding: 0.5rem 1rem;
+.input {
+  font-size: 1rem;
+}
+.submit-btn {
+  background-color: #00337C;
+  color: white;
+  padding: .5rem 1rem;
   border: 0;
-  border-radius: 0.3rem;
+  border-radius: .3rem;
+}
+.submit-btn:hover {
+  background-color: #003b8d;
 }
 .delete-all-btn {
-  background-color: plum;
+  background-color: #3A1078;
   color: white;
-  padding: 0.5rem 1rem;
+  padding: .5rem .7rem;
   border: 0;
-  border-radius: 0.3rem;
+  border-radius: .3rem;
+}
+.delete-all-btn:hover {
+  background-color: #471394;
 }
 </style>

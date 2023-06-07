@@ -18,6 +18,7 @@ export default {
     @click="handleDone(todo.id)"
     id="todoItem"
     v-bind:class="{ 'done-item': todo.done }"
+    class="todo-item"
   >
     {{ todo.todo }}
   </li>

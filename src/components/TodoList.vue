@@ -34,13 +34,16 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 10%;
+  width: 22.6rem;
   cursor: pointer;
+  padding: .5rem;
+  background-color: #0A2647;
 }
 
 .list-item li {
-  color: black;
-  font-size: 1.5rem;
+  color: white;
+  font-size: 1.3rem;
+  list-style: none;
 }
 .remove-btn {
   background-color: red;
